@@ -1,0 +1,905 @@
+openapi: 3.0.0
+info:
+  title: ISDServices
+  description: In order to create a post on your medical reserch work, read about other medical post and comments, ISDServices provides you this placform, you must first initiate the process from the platform by registering.
+  contact:
+    name: hr.admin@isdservices.org
+    email: integratedsoftwaredataservices@gmail.com
+  version: "1.0"
+servers:
+  - url: https://isdservices.herokuapp.com
+    description: This is the production server
+    variables: {}
+  - url: http://localhost:4400
+    description: "This is the localhost development server"
+    variables: {}
+paths:
+  /comment/create-comment:
+    post:
+      tags:
+        - User
+      summary: comment
+      description: comment
+      operationId: comment
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/comment"
+                - example:
+                    postID: 90oiu898tg5
+                    commentBody: put your comment here
+                    firstName: "Felix"
+                    lastName: Adegbesan
+            example:
+              commentBody: "comment body here"
+              postID: 90oiu898tg5
+              firstName: "Felix"
+              lastName: Adegbesan
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /user/create-survey:
+    post:
+      tags:
+        - User
+      summary: survey
+      description: survey
+      operationId: survey
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/survey"
+                - example:
+                    medicalWorker: true
+                    usedEMR: true
+                    experienceWithEMR: put your survey here
+                    nonHealthCareExperienceWithEMR: put your survey here
+                    expectedWebsiteContent: put your survey here
+                    interestedWebsiteContent: put your survey here
+                    countryEMRWasUsed: "Nigeria"
+                    yearEMRWasUsed: "04/01/2023"
+                    EMRDislikeAndImprovement: none
+                    newEMRFunctionalities: colored result
+                    userSummaryNigeriaEMR: it very accurate
+                    userEmail: test@tested.com
+            example:
+              medicalWorker: true
+              usedEMR: true
+              experienceWithEMR: put your survey here
+              nonHealthCareExperienceWithEMR: put your survey here
+              expectedWebsiteContent: put your survey here
+              interestedWebsiteContent: put your survey here
+              countryEMRWasUsed: "Nigeria"
+              yearEMRWasUsed: "04/01/2023"
+              EMRDislikeAndImprovement: none
+              newEMRFunctionalities: colored result
+              userSummaryNigeriaEMR: it very accurate
+              userEmail: test@tested.com
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /isds/suscribe:
+    post:
+      tags:
+        - User
+      summary: suscribe
+      description: suscribe to news letter
+      operationId: suscribe
+      parameters: []
+      requestBody:
+        description: "Suscribe to ISDS newsletter"
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/suscribe"
+                - example:
+                    email: test@domain.com
+            example:
+              email: test@domain.com
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+  /isds-admin/create-contact:
+    post:
+      tags:
+        - User
+      summary: contactUs
+      description: contactUs
+      operationId: contactUs
+      parameters: []
+      requestBody:
+        description: "Send a message to ISDS admin"
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/contactUs"
+                - example:
+                    email: test@domain.com
+                    message: put your message here
+                    fullName: "Felix Adegbesan"
+            example:
+              email: test@domain.com
+              message: put your message here
+              fullName: "Felix Adegbesan"
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+  /user/update:
+    patch:
+      tags:
+        - User
+      summary: updateprofile
+      description: This endpoint allows you to update a logged-in user profile
+      operationId: updateprofile
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/updateprofilerequest"
+                - example:
+                    name: Tunwase
+                    occupation: Chemist
+                    phoneNumber: "08073059173"
+                    avatar: https://i.pinimg.com/originals/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg
+                    role: admin
+            example:
+              name: Tunwase
+              occupation: Chemist
+              phoneNumber: "08073059173"
+              avatar: https://i.pinimg.com/originals/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg
+              role: admin
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /post/create-post:
+    post:
+      tags:
+        - User
+      summary: CreatePost
+      description: A logged-in user can create a post with this endpoint
+      operationId: CreatePost
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/createPost"
+                - example:
+                    postTitle: Post One
+                    postBody: "post body text"
+                    postImage: "http://img.png"
+                    category: "health care"
+                    author: "Bassey Edet"
+                    userSummary: "I am full stack web developer"
+            example:
+              postTitle: Post One
+              postBody: "post body text"
+              postImage: "http://img.png"
+              category: "health care"
+              author: "Bassey Edet"
+              userSummary: "I am full stack web developer"
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /post/get-single-post/{id}:
+    get:
+      tags:
+        - User
+      summary: PostAndsurveys
+      description: Get a single post and all it's survey. user must be logged-in user
+      operationId: PostAndsurveys
+      parameters:
+        - name: id
+          in: path
+          description: The post ID
+          required: true
+          style: simple
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+
+  /user/single-user:
+    get:
+      tags:
+        - User
+      summary: SingleUser
+      description: This returns details of a single user
+      operationId: SingleUser
+
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+
+  /api/mail:
+    post:
+      tags:
+        - Email Services
+      summary: SendEmail
+      description: To send an email, just enter the recipient's email address, the subject, and either a text or HTML field for the email body.
+      operationId: SendEmail
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/sendEmailRequest"
+                - example:
+                    to: example@domain.com
+                    subject: RESET PASSWORD
+                    html: "<div style='max-width: 700px;text-align: center; text-transform: uppercase; margin:auto; border: 10px solid #ddd;padding: 50px 20px; font-size: 110%;'> <h2 style='color: teal;'></h2> <p>Please Follow the link by clicking on the button to verify your email </p> <div style='text-align:center ;'> <a href='http://localhost.4400/restetpassword' style='background: #277BC0; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;'>Click here</a></div></div>"
+            example:
+              to: example@domain.com
+              subject: RESET PASSWORD
+              html: "<div style='max-width: 700px;text-align: center; text-transform: uppercase; margin:auto; border: 10px solid #ddd;padding: 50px 20px; font-size: 110%;'> <h2 style='color: teal;'></h2> <p>Please Follow the link by clicking on the button to verify your email </p> <div style='text-align:center ;'> <a href='http://localhost.4400/restetpassword' style='background: #277BC0; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;'>Click here</a></div></div>"
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+  /user/reset-password:
+    patch:
+      tags:
+        - Auth
+      summary: ForgotPasswordReset
+      description: After the user's email has been verified to be valid, the user can then reset his or her password
+      operationId: ForgotPasswordReset
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/restepasswordrequest"
+                - example:
+                    token: d55e5e01-7b41-440f-961c-a16ab779e00a
+                    password: mypassword
+                    confirmPassword: mypassword
+            example:
+              token: d55e5e01-7b41-440f-961c-a16ab779e00a
+              password: mypassword
+              confirmPassword: mypassword
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+  /user/register:
+    post:
+      tags:
+        - Auth
+      summary: RegisterUser
+      description: This is the signup endpoint, which allows you to register a user
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/registeruserrequest"
+                - example:
+                    name: John
+                    occupation: Doe
+                    dateOfBirth: 04/01/2003
+                    email: example@domain.com
+                    password: "1234567890"
+                    confirmPassword: "1234567890"
+            example:
+              name: John
+              occupation: Doyin
+              dateOfBirth: 04/01/2004
+              email: example@domain.com
+              password: "1234567890"
+              confirmPassword: "1234567890"
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+  /user/login:
+    post:
+      tags:
+        - Auth
+      summary: LoginUser
+      description: You can log in either by using a registered email or a registered dateOfBirth with a password
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/loginuserrequest"
+                - example:
+                    email: email@hostname.com
+                    password: userpassword
+            example:
+              email: email@hostname.com
+              password: userpassword
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+  /user/verify/{token}:
+    get:
+      tags:
+        - Auth
+      summary: VerifyEmail
+      description: This endpoint verifies an unverified email, to get the token for verification you can go through the resend verification token endpoint or upon registration of the user, after which the user would be redirected to the login page
+      operationId: VerifyEmail
+      parameters:
+        - name: token
+          in: path
+          description: The user ID
+          required: true
+          style: simple
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+  /user/forgot-password:
+    post:
+      tags:
+        - Auth
+      summary: ForgotPasswordToken
+      description: This endpoint generates a token that is sent to the email provided. Then the token can be used to reset the password via the reset password endpoint
+      operationId: ForgotPasswordToken
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/forgetpasswordrequest"
+                - example:
+                    email: example@domain.com
+            example:
+              email: example@domain.com
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+  /user/resend-verification:
+    patch:
+      tags:
+        - Auth
+      summary: ResendVerificationToken
+      description: You can resend email verification token with this endpoint
+      operationId: ResendVerificationToken
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/forgetpasswordrequest"
+                - example:
+                    email: example@hostname.com
+            example:
+              email: example@hostname.com
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+  /user/all-users:
+    get:
+      tags:
+        - Admin
+      summary: AllUsers
+      description: This endpoint returns all registered users, accessed by logged-in admin only
+      operationId: AllUsers
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /post/delete-post/{id}:
+    delete:
+      tags:
+        - Admin
+      summary: deletePost
+      description: This endpoint allows ISDS admin delete a post, accessed by logged-in admin only
+      operationId: deletePost
+      parameters:
+        - name: id
+          in: path
+          description: The post ID
+          required: true
+          style: simple
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "This endpoint allows a varified admin to delete a post"
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /post/get-all-post:
+    get:
+      tags:
+        - User
+      summary: All post
+      description: This endpoint returns all created post and comments, accessed by logged-in users only to view comments
+      operationId: All post
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+  /user/delete-user/{userId}:
+    delete:
+      tags:
+        - Admin
+      summary: DeleteUser
+      description: This endpoint deletes a registered user from the system database, accessed only by logged-in admin
+      operationId: DeleteUser
+      parameters:
+        - name: userId
+          in: path
+          description: The user ID
+          required: true
+          style: simple
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content: {}
+      deprecated: false
+      security:
+        - bearer: []
+components:
+  schemas:
+    createComment:
+      title: createComment
+      required:
+        - commentBody
+        - userId
+        - postID
+        - firstName
+        - lastName
+      type: object
+      properties:
+        commentBody:
+          type: string
+        userId:
+          type: string
+        postID:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+      example:
+        commentBody: "I think this post is very important"
+        userId: "hfjhf0986jfbd"
+        postID: "oiu977y6gge5"
+        firstName: Wale
+        lastName: "Bayo"
+    survey:
+      title: createSurvey
+      required:
+        - medicalWorker
+        - usedEMR
+        - expectedWebsiteContent
+        - nonHealthCareExperienceWithEMR
+        - interestedWebsiteContent
+        - experienceWithEMR
+        - countryEMRWasUsed
+        - yearEMRWasUsed
+        - EMRDislikeAndImprovement
+        - newEMRFunctionalities
+        - userSummaryNigeriaEMR
+        - userEmail
+      type: object
+      properties:
+        medicalWorker:
+          type: boolean
+        usedEMR:
+          type: boolean
+        expectedWebsiteContent:
+          type: string
+        nonHealthCareExperienceWithEMR:
+          type: string
+        interestedWebsiteContent:
+          type: string
+        experienceWithEMR:
+          type: string
+        countryEMRWasUsed:
+          type: string
+        yearEMRWasUsed:
+          type: string
+        EMRDislikeAndImprovement:
+          type: string
+        newEMRFunctionalities:
+          type: string
+        userSummaryNigeriaEMR:
+          type: string
+        userEmail:
+          type: string
+      example:
+        medicalWorker: true
+        usedEMR: true
+        experienceWithEMR: put your survey here
+        nonHealthCareExperienceWithEMR: put your survey here
+        expectedWebsiteContent: put your survey here
+        interestedWebsiteContent: put your survey here
+        countryEMRWasUsed: "Nigeria"
+        yearEMRWasUsed: "04/01/2023"
+        EMRDislikeAndImprovement: none
+        newEMRFunctionalities: colored result
+        userSummaryNigeriaEMR: it very accurate
+        userEmail: test@tested.com
+    sendEmailRequest:
+      title: sendEmailRequest
+      required:
+        - to
+        - subject
+        - html
+      type: object
+      properties:
+        to:
+          type: string
+        subject:
+          type: string
+        html:
+          type: string
+      example:
+        to: example@example.com
+        subject: RESET PASSWORD
+        html: "<div style='max-width: 700px;text-align: center; text-transform: uppercase; margin:auto; border: 10px solid #ddd;padding: 50px 20px; font-size: 110%;'> <h2 style='color: teal;'></h2> <p>Please Follow the link by clicking on the button to verify your email </p> <div style='text-align:center ;'> <a href='http://localhost.4400/restetpassword' style='background: #277BC0; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;'>Click here</a></div></div>"
+    restepasswordrequest:
+      title: restepasswordrequest
+      required:
+        - token
+        - password
+        - confirmPassword
+      type: object
+      properties:
+        token:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+      example:
+        token: d55e5e01-7b41-440f-961c-a16ab779e00a
+        password: mypassword
+        confirmPassword: mypassword
+    registeruserrequest:
+      title: registeruserrequest
+      required:
+        - name
+        - occupation
+        - dateOfBirth
+        - email
+        - password
+        - confirmPassword
+      type: object
+      properties:
+        name:
+          type: string
+        occupation:
+          type: string
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+      example:
+        name: Adeyinka
+        occupation: Doctor
+        dateOfBirth: 04/04/2023
+        email: example@domain.com
+        password: "1234567890"
+        confirmPassword: "1234567890"
+    loginuserrequest:
+      title: loginuserrequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: example@domain.com
+        password: "1234567890"
+    forgetpasswordrequest:
+      title: forgetpasswordrequest
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+      example:
+        email: example@domain.com
+    updateprofilerequest:
+      title: updateprofilerequest
+      required:
+        - name
+        - occupation
+        - phoneNumber
+        - avatar
+        - role
+      type: object
+      properties:
+        name:
+          type: string
+        occupation:
+          type: string
+        phoneNumber:
+          type: string
+        avatar:
+          type: string
+        role:
+          type: string
+      example:
+        name: Lagbaja
+        occupation: Dentist
+        phoneNumber: "08073059173"
+        avatar: https://i.pinimg.com/originals/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg
+        role: admin
+    createPost:
+      title: createPost
+      required:
+        - postTitle
+        - postBody
+        - postImage
+        - userSummary
+        - userId
+        - author
+        - category
+      type: object
+      properties:
+        postTitle:
+          type: string
+        postBody:
+          type: string
+        postImage:
+          type: string
+        userSummary:
+          type: string
+        userId:
+          type: string
+        category:
+          type: string
+        author:
+          type: string
+      example:
+        postTitle: Post One
+        postBody: "post body text"
+        postImage: "https://image.png"
+        category: "health care"
+        author: "Bassey David"
+    AdminRegisterRequest:
+      title: AdminRegisterRequest
+      required:
+        - name
+        - occupation
+        - dateOfBirth
+        - email
+        - phoneNumber
+        - password
+        - confirmPassword
+        - role
+      type: object
+      properties:
+        name:
+          type: string
+        occupation:
+          type: string
+        dateOfBirth:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        password:
+          type: string
+        confirmPassword:
+          type: string
+        role:
+          type: string
+      example:
+        name: Olamide
+        occupation: Web Developer
+        dateOfBirth: 04/01/2023
+        email: example@domain.com
+        phoneNumber: "08073059173"
+        password: "1234567890"
+        confirmPassword: "1234567890"
+        role: admin
+    createSurvey:
+      title: createSurvey
+      required:
+        - surveyTitle
+        - userEmail
+        - surveyBody
+        - userSummary
+        - userId
+      type: object
+      properties:
+        surveyTitle:
+          type: string
+        userEmail:
+          type: string
+        surveyBody:
+          type: string
+        userSummary:
+          type: string
+        userId:
+          type: string
+      example:
+        surveyTitle: airtel
+        userEmail: "test@des.pol"
+        surveyBody: "this is good"
+        userSummary: "the survey should come frequently"
+        userId: "dfghgyff231222"
+    contactUs:
+      title: contactUs
+      required:
+        - email
+        - message
+        - fullName
+
+      type: object
+      properties:
+        email:
+          type: string
+        message:
+          type: string
+        fullName:
+          type: string
+
+      example:
+        email: test@domain.com
+        userEmail: "test@des.pol"
+        fullName: "this is good"
+    suscribe:
+      title: suscribe
+      required:
+        - email
+
+      type: object
+      properties:
+        email:
+          type: string
+
+      example:
+        email: test@domain.com
+
+    ResendVerificationEmailRequest:
+      title: ResendVerificationEmailRequest
+      required:
+        - email
+      type: object
+      properties:
+        email:
+          type: string
+      example:
+        email: example@domain.com
+
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: User
+    description: ""
+  - name: Email Services
+    description: ""
+  - name: Auth
+    description: ""
+  - name: Admin
+    description: ""

@@ -1,0 +1,1 @@
+{"version":3,"file":"suscribeModel.js","sourceRoot":"","sources":["../../src/model/suscribeModel.ts"],"names":[],"mappings":";AAAA,mEAAmE;;;;;;;;;;;;;;;;;;;;;;;;;AAEnE,mDAAqC;AAQrC,MAAM,cAAc,GAAG,IAAI,QAAQ,CAAC,MAAM,CAAC;IACzC,KAAK,EAAE,MAAM;IACb,IAAI,EAAE,MAAM;CACb,CAAC,CAAC;AAEH,MAAM,QAAQ,GAAG,QAAQ,CAAC,KAAK,CAAC,UAAU,EAAE,cAAc,CAAC,CAAC;AAE5D,kBAAe,QAAQ,CAAC"}
